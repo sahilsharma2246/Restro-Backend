@@ -6,13 +6,17 @@ import env from "./config/env.js";
 import { authMiddleware } from "./Middleware/auth.middleware.js";
 import foodRouter from "./Route/food.route.js";
 import orderRouter from "./Route/order.Route.js";
+import bodyParser from "body-parser";
 
 // config imports
 
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 const PORT = env.PORT;
 // app uses
-app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static("uploads"));
 app.use("/api/auth", AuthRoutes);
 app.use("/api/food", foodRouter);

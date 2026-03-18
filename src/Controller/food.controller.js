@@ -44,6 +44,7 @@ export const getFoodById = async (req, res) => {
 
 export const createFood = async (req, res) => {
   try {
+    console.log("Request Body:\t", req.body);
     const { name, price, description, category, available } = req.body;
 
     console.log("Received data:", {
@@ -101,7 +102,7 @@ export const createFood = async (req, res) => {
       createdBy: req.userId, // set by auth.middleware
     });
 
-    // const saved = await newFood.save();
+     const saved = await newFood.save();
     res.status(201).json(newFood);
   } catch (err) {
     res.status(400).json({ message: "Invalid data", error: err.message });

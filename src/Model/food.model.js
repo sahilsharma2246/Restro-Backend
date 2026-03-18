@@ -6,7 +6,7 @@ const foodSchema = mongoose.Schema({
     required: true,
     lowercase: true,
     minLength: 3,
-    maxLenght: 40,
+    maxLenght: 40,  
   },
   description: {
     type: String,

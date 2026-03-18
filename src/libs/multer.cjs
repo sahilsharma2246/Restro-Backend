@@ -1,14 +1,14 @@
-const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+const multer = require("multer");
 
-
+// Ensure the directory exists relative to server.js
 const uploadPath = path.join(__dirname, "..", "uploads");
 if (!fs.existsSync(uploadPath)) {
   fs.mkdirSync(uploadPath, { recursive: true });
 }
 
-
+// Storage Configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, uploadPath);
@@ -19,10 +19,10 @@ const storage = multer.diskStorage({
   },
 });
 
-
+// The actual middleware instance
 const upload = multer({
   storage: storage,
-  limits: { fileSize: 100 * 1024 * 1024 }, 
+  limits: { fileSize: 1000 * 1024 * 1024 }, // Optional: 10MB limit
 });
 
 module.exports = upload;

@@ -22,6 +22,7 @@ router.post(
   "/",
   authMiddleware,
   roleMiddleware,
+  upload.array("image"),
   createFood,
 );
 router.put(
